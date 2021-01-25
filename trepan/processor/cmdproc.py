@@ -205,7 +205,9 @@ def print_location(proc_obj):
                     pass
                 pyficache.remap_file(fd.name, '<string>')
                 remapped = cmdfns.source_tempfile_remap('eval_string',
-
+                                                        dbgr_obj.eval_string,
+                                                        tempdir=proc_obj.settings("tempdir")
+                                                        )
                 pyficache.remap_file(filename, remapped)
                 filename = remapped
                 lineno = pyficache.unmap_file_line(filename, lineno)

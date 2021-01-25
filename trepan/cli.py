@@ -17,7 +17,6 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """The command-line interface to the debugger.
 """
-from __future__ import print_function
 import pyficache, os, sys, tempfile
 import os.path as osp
 
@@ -131,16 +130,8 @@ def main(dbg=None, sys_argv=list(sys.argv)):
                 try:
                     from uncompyle6 import decompile_file
                 except ImportError:
-<<<<<<< HEAD
                     sys.stderr.write("%s: Compiled python file '%s', but uncompyle6 not found\n"
                                      % (__title__, mainpyfile))
-=======
-                    print(
-                        "%s: Compiled python file '%s', but uncompyle6 not found"
-                        % (__title__, mainpyfile),
-                        file=sys.stderr,
-                    )
->>>>>>> master
                     sys.exit(1)
                     return
 
@@ -156,47 +147,20 @@ def main(dbg=None, sys_argv=list(sys.argv)):
                     mainpyfile = fd.name
                     fd.close()
                 except:
-<<<<<<< HEAD
                     sys.stderr.write("%s: error uncompyling '%s'\n"
                                      % (__title__, mainpyfile))
-=======
-                    print(
-                        "%s: error uncompiling '%s'" % (__title__, mainpyfile),
-                        file=sys.stderr,
-                    )
-                    fd.close()
-                    os.unlink(fd.name)
-                    # FIXME: remove the below line and continue with just the
-                    # bytecode
->>>>>>> master
                     sys.exit(1)
                 pass
 
         # If mainpyfile is an optimized Python script try to find and
         # use non-optimized alternative.
         mainpyfile_noopt = pyficache.resolve_name_to_path(mainpyfile)
-<<<<<<< HEAD
         if mainpyfile != mainpyfile_noopt \
                and Mfile.readable(mainpyfile_noopt):
             sys.stderr.write("%s: Compiled Python script given and we can't use that.\n"
                              % __title__)
             sys.stderr.write("%s: Substituting non-compiled name: %s\n" %
                              (__title__, mainpyfile_noopt))
-=======
-        if mainpyfile != mainpyfile_noopt and Mfile.readable(mainpyfile_noopt):
-            print(
-                "%s: Compiled Python script given and we can't use that." % __title__,
-                file=sys.stderr,
-            )
-            print(
-                "%s: Substituting non-compiled name: %s"
-                % (
-                    __title__,
-                    mainpyfile_noopt,
-                ),
-                file=sys.stderr,
-            )
->>>>>>> master
             mainpyfile = mainpyfile_noopt
             pass
 

@@ -24,11 +24,8 @@ def source_tempfile_remap(prefix, text, tempdir=None):
     fd = tempfile.NamedTemporaryFile(suffix=".py", prefix=prefix,
                                      dir=tempdir,
                                      delete=False)
-    with fd:
-        fd.write(bytes(text, "UTF-8"))
-        fd.close()
-    finally:
-        fd.close()
+    fd.write(bytes(text, "UTF-8"))
+    fd.close()
     return fd.name
 
 
